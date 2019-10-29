@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import HeaderNav from "./components/header/Header";
+import HeaderNav from "./components/Header";
 import moment from "moment";
-import MatchInput from "./components/match/MatchInput";
+import MatchInput from "./components/MatchInput";
 
 class App extends React.Component {
   constructor(props) {
