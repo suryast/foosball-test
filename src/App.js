@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import HeaderNav from "./components/header/header";
+import HeaderNav from "./components/header/Header";
 import moment from "moment";
+import MatchInput from "./components/match/MatchInput";
 
 class App extends React.Component {
   constructor(props) {
@@ -11,8 +12,8 @@ class App extends React.Component {
     this.state = {
       results: [
         {
-          team1: ["Player 1"],
-          team2: ["Player 2"],
+          teamOne: ["Sample Player 1"],
+          teamTwo: ["Sample Player 2"],
           winner: 1,
           date: new moment()
         }
@@ -20,11 +21,28 @@ class App extends React.Component {
     };
   }
 
+  updateResults(results) {
+    this.setState({
+      results
+    });
+  }
+
+  matchInput() {
+    return (
+      <MatchInput
+        results={this.state.results}
+        updateResults={this.updateResults.bind(this)}
+      />
+    );
+  }
+
   render() {
     return (
       <Router>
         <div>
           <HeaderNav />
+          <Route exact path="/" component={this.matchInput.bind(this)} />
+          <Route path="/input" component={this.matchInput.bind(this)} />
         </div>
       </Router>
     );
