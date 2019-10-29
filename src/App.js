@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import HeaderNav from "./components/header/header";
+import moment from "moment";
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      results: [
+        {
+          team1: ["Player 1"],
+          team2: ["Player 2"],
+          winner: 1,
+          date: new moment()
+        }
+      ]
+    };
+  }
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <HeaderNav />
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
