@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Box,
-  Typography,
-  Divider,
-  Grid,
-  Button
-} from "@material-ui/core";
+import { Container, Box, Typography, Divider, Grid } from "@material-ui/core";
 
 export default class Leaderboard extends Component {
   constructor(props) {
@@ -16,6 +9,16 @@ export default class Leaderboard extends Component {
       players: props.players
     };
   }
+
+  // need a function to search through this.props.players – remove redundant player objects
+  // combine the { win } and { played} and merge objects into a single object
+  removeRedundantObjects() {}
+
+  // once redundant objects are removed we can calculate the win/lose ratio for each player
+  calculateWinLoseRatio() {}
+
+  // display the head-to-head history between two players
+  comparedHeadToHead(playerOne, playerTwo) {}
 
   render() {
     return (
