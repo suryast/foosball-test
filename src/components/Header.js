@@ -17,15 +17,19 @@ class Header extends Component {
           </Typography>
         </Box>
         <Grid container spacing={1}>
-          <Grid item xs={6}>
-            <Link component={LinkWithRoute} to="/input">
-              Input Match Result
-            </Link>
+          <Grid item sm={4}>
+            <Typography variant="h6" component="h6" gutterBottom>
+              <Link component={LinkWithRoute} to="/input">
+                Input Match Result
+              </Link>
+            </Typography>
           </Grid>
-          <Grid item xs={6}>
-            <Link component={LinkWithRoute} to="/leaderboard">
-              Leaderboard
-            </Link>
+          <Grid item sm={4}>
+            <Typography variant="h6" component="h6" gutterBottom>
+              <Link component={LinkWithRoute} to="/leaderboard">
+                Leaderboard
+              </Link>
+            </Typography>
           </Grid>
         </Grid>
       </Container>

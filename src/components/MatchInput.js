@@ -72,8 +72,24 @@ export default class MatchInput extends Component {
       teamOne: teamArray1,
       teamTwo: teamArray2,
       winner: parseInt(winner),
-      date: new moment(),
-      errormsg: ""
+      date: new moment()
+    });
+
+    const players = this.props.players;
+    teamArray1.map(player => {
+      players.push({
+        name: player,
+        win: 0,
+        played: 0
+      });
+    });
+
+    teamArray2.map(player => {
+      players.push({
+        name: player,
+        win: 0,
+        played: 0
+      });
     });
 
     // Update storage and reset local state
@@ -85,7 +101,7 @@ export default class MatchInput extends Component {
     });
 
     // Update Global app state
-    this.props.updateResults(matches);
+    this.props.updateResults(matches, players);
   }
 
   addTeamMember(team) {
