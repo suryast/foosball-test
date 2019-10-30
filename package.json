@@ -25,6 +25,7 @@
     "@babel/preset-env": "^7.6.3",
     "babel-jest": "^24.9.0",
     "concurrently": "*",
+    "enzyme-adapter-react-16": "^1.15.1",
     "jest": "^24.9.0",
     "supertest": "^4.0.2"
   }
