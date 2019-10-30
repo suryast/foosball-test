@@ -34,6 +34,7 @@ class App extends React.Component {
     return (
       <MatchInput
         results={this.state.results}
+        players={this.state.players}
         updateResults={this.updateResults.bind(this)}
       />
     );

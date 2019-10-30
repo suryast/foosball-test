@@ -23,22 +23,22 @@ export default class MatchInput extends Component {
   }
 
   addMatchDetails() {
-    // Get all player values per team.
-    let teamArray1 = [],
-      teamArray2 = [];
+    // hacky way of getting player from the DOM??
+    let _teamOne = [],
+      _teamTwo = [];
 
     for (let i = 0; i < this.state.teamOne.length; i++) {
       const inputfield = document.getElementById("teamOne_player_" + (i + 1));
       if (inputfield.value !== null || inputfield.value !== "")
-        teamArray1.push(inputfield.value);
+        _teamOne.push(inputfield.value);
     }
     for (let i = 0; i < this.state.teamTwo.length; i++) {
       const inputfield = document.getElementById("teamTwo_player_" + (i + 1));
       if (inputfield.value !== null || inputfield.value !== "")
-        teamArray2.push(inputfield.value);
+        _teamTwo.push(inputfield.value);
     }
 
-    // Check for selected winner
+    // check winning team
     let winner = null;
     if (document.getElementById("radioBlue").checked) {
       winner = document.getElementById("radioBlue").value;
@@ -46,14 +46,13 @@ export default class MatchInput extends Component {
       winner = document.getElementById("radioGreen").value;
     }
 
-    // Validate the submission details
+    // validate form
     if (!winner) {
       this.setState({
         errormsg: "Select a winner"
       });
       return false;
     }
-
     if (
       document.getElementById("teamOne_player_1").value === "" ||
       document.getElementById("teamTwo_player_1").value === ""
@@ -69,13 +68,30 @@ export default class MatchInput extends Component {
     // create temp array to duplicate state
     const matches = this.props.results;
     matches.push({
-      teamOne: teamArray1,
-      teamTwo: teamArray2,
+      teamOne: _teamOne,
+      teamTwo: _teamTwo,
       winner: parseInt(winner),
       date: new moment()
     });
 
-    // Update storage and reset local state
+    // update props – players
+    const players = this.props.players;
+    _teamOne.map(player => {
+      players.push({
+        name: player,
+        won: parseInt(winner) === 1 ? 1 : 0,
+        played: 1
+      });
+    });
+    _teamTwo.map(player => {
+      players.push({
+        name: player,
+        won: parseInt(winner) === 2 ? 1 : 0,
+        played: 1
+      });
+    });
+
+    // reset form
     document.getElementById("teamOne_player_1").value = null;
     document.getElementById("teamTwo_player_1").value = null;
     this.setState({
@@ -83,13 +99,12 @@ export default class MatchInput extends Component {
       teamTwo: [""]
     });
 
-    // Update Global app state
+    // update props – matches
     this.props.updateResults(matches);
   }
 
   addTeamMember(team) {
     if (team === "Blue") {
-      //push new team member object
       const team = this.state.teamOne;
       team.push({});
       this.setState({
