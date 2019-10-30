@@ -1,68 +1,66 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Some notes for this repo
+
+- This repo is second version on the Foosball project. The original design lives here [https://github.com/suryast/foosball-demo](https://github.com/suryast/foosball-demo).
+
+- The first iteration of this project. I was too focused on keeping track of the scores and creating object relationship. I realised that the score wasn't the main focus of the task.
+
+- This version is focused on recording winner and loser in a match and adding players in Blue or Green team.
+
+- Two main objects in this version are players and results (which consist of matches).
+
+### Existing bugs:
+
+[] Matches can be played by many players (more than 2) vs many players (more than 2). A foosball table can accommodate up to 4 players only.
+[] Doubling of player with the same name. Players with the same name should be combined into a single object – combined the winning.
+[] Unable to keep track of individual number of wins and number of matches played by each player
+
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `yarn dev`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Runs the react app and the node server in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The package.json of the react app has an entry `"proxy": "http://localhost:5000/"`.
+
+Node server: [http://localhost:5000](http://localhost:5000)
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
+### `yarn client`
+
+It will run the following script `cd client && yarn start`. React-based client app only.
+
+### `yarn server`
+
+It will run the following script `cd server && nodemon server.js`. Node server only.
+
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Execute this at the top-level directory to run both `yarn test-client` and `yarn test-server` command sequentially.
 
-### `yarn build`
+### `yarn test-client`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Run tests for the React app only.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### `yarn test-server`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Run tests for the node server only.
 
-### `yarn eject`
+## Project Brief
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+"Imagine that a coworking space has a foosball table in the common room. In order to settle the often asked question of who is the foosball champion, the team has elected to store the results of every game. To facilitate this process a new system will be built. The Foosball Ranking System."
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### User Stories
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+_*As a user I can record the results of matches (no login requirements)
+Able to enter the participants and the winner(s)
+Assume the date of entry is the date of the match
+Handle X vs X matches (1v1, 1v2, 2v2 etc)*_
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+_*As a user I can view the win rates
+The overall win loss rate of a participant
+The win loss rate of a participant against another specific participant*_

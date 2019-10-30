@@ -1,34 +1,31 @@
 {
-  "name": "foosball-test",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "latest",
-    "moment": "^2.24.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0"
-  },
+  "name": "foosball-demo-server",
+  "version": "0.0.1",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "client": "cd client && yarn start",
+    "server": "cd server && nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "test-client": "cd client && yarn test",
+    "test-server": "jest server/",
+    "test": "yarn test-client  && yarn test-server"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "body-parser": "*",
+    "express": "*"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
+    "babel-jest": "^24.9.0",
+    "concurrently": "*",
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
   }
 }
