@@ -10,26 +10,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      results: [
-        {
-          teamOne: ["Sample Player 1"],
-          teamTwo: ["Sample Player 2"],
-          winner: 1,
-          date: new moment()
-        }
-      ],
-      players: [
-        {
-          name: "Sample Player 1",
-          won: 1,
-          played: 0
-        },
-        {
-          name: "Sample Player 2",
-          won: 0,
-          played: 0
-        }
-      ]
+      results: [],
+      players: []
     };
   }
 
@@ -63,7 +45,7 @@ class App extends React.Component {
       <Leaderboard
         results={this.state.results}
         players={this.state.players}
-        updateResults={this.updatePlayers.bind(this)}
+        updatePlayers={this.updatePlayers.bind(this)}
       />
     );
   }
