@@ -41,12 +41,12 @@ class App extends React.Component {
     return body;
   };
 
-  handleSubmit = async e => {
+  handleSubmitPlayers = async e => {
     console.log(
       "Sending this as body to server: " + JSON.stringify(this.state.players)
     );
     e.preventDefault();
-    const response = await fetch("/api/world", {
+    const response = await fetch("/api/players", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -59,6 +59,27 @@ class App extends React.Component {
 
     this.setState({
       textResponse: "I received your POST request.This is what you sent me: "
+    });
+
+    this.setState({ responseToPost: body });
+  };
+
+  handleSubmitResults = async e => {
+    console.log(
+      "Sending this as body to server: " + JSON.stringify(this.state.results)
+    );
+    e.preventDefault();
+    const response = await fetch("/api/results", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(this.state.results)
+    });
+    const body = await response.text();
+
+    this.setState({
+      textResponse: ""
     });
 
     this.setState({ responseToPost: body });
@@ -122,9 +143,16 @@ class App extends React.Component {
               <Button
                 variant="outlined"
                 color="secondary"
-                onClick={this.handleSubmit.bind(this)}
+                onClick={this.handleSubmitPlayers.bind(this)}
               >
-                Post to Server and receive JSON response
+                Post Players[ ] to Server and receive JSON response
+              </Button>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={this.handleSubmitResults.bind(this)}
+              >
+                Post results[ ] to Server
               </Button>
               <Box color="red">
                 <Typography variant="subtitle1" color="red">

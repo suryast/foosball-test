@@ -11,7 +11,14 @@ app.get("/api/hello", (req, res) => {
   res.send({ express: `A node server is running on port ${port}` });
 });
 
-app.post("/api/world", (req, res) => {
+app.post("/api/results", (req, res) => {
+  console.log(req.body);
+  res.send(
+    `I just want to say that that I got it! Check your console and the server log for the details of what you had sent through.`
+  );
+});
+
+app.post("/api/players", (req, res) => {
   console.log(req.body);
   res.json(req.body);
 });
