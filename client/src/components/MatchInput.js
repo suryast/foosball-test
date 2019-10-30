@@ -193,7 +193,9 @@ export default class MatchInput extends Component {
                 Create Match Record
               </Button>
             </Box>
-            <Box>{this.state.errormsg}</Box>
+            <Box color="red" my={4}>
+              <Typography variant="subtitle2">{this.state.errormsg}</Typography>{" "}
+            </Box>
           </Grid>
 
           <Grid item>
