@@ -9,7 +9,6 @@ import Leaderboard from "./components/Leaderboard";
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       results: [
         {
@@ -22,39 +21,51 @@ class App extends React.Component {
       players: [
         {
           name: "Sample Player 1",
-          win: 1,
+          won: 1,
           played: 0
         },
         {
           name: "Sample Player 2",
-          win: 0,
+          won: 0,
           played: 0
         }
       ]
     };
   }
 
-  updateResults(results, players) {
+  // Store results to parent props
+  updateResults(results) {
     this.setState({
       results
     });
+  }
+
+  // Update the player objects from the results using deconstruction – this will be messy
+  updatePlayers(players) {
     this.setState({
       players
     });
   }
 
+  // Function to show MatchInput
   matchInput() {
     return (
       <MatchInput
         results={this.state.results}
-        players={this.state.players}
         updateResults={this.updateResults.bind(this)}
       />
     );
   }
 
+  // Function to show Leaderboard
   viewLeaderboard() {
-    return <Leaderboard results={this.state.results} />;
+    return (
+      <Leaderboard
+        results={this.state.results}
+        players={this.state.players}
+        updateResults={this.updatePlayers.bind(this)}
+      />
+    );
   }
 
   render() {

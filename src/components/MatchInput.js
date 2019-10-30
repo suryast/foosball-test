@@ -75,23 +75,6 @@ export default class MatchInput extends Component {
       date: new moment()
     });
 
-    const players = this.props.players;
-    teamArray1.map(player => {
-      players.push({
-        name: player,
-        win: 0,
-        played: 0
-      });
-    });
-
-    teamArray2.map(player => {
-      players.push({
-        name: player,
-        win: 0,
-        played: 0
-      });
-    });
-
     // Update storage and reset local state
     document.getElementById("teamOne_player_1").value = null;
     document.getElementById("teamTwo_player_1").value = null;
@@ -101,7 +84,7 @@ export default class MatchInput extends Component {
     });
 
     // Update Global app state
-    this.props.updateResults(matches, players);
+    this.props.updateResults(matches);
   }
 
   addTeamMember(team) {
@@ -134,7 +117,12 @@ export default class MatchInput extends Component {
             <Box my={4} color="blue">
               <Typography variant="h6" component="h6">
                 Team Blue WON?
-                <Radio id="radioBlue" color="primary" value={1} name="winner" />
+                <Radio
+                  id="radioBlue"
+                  color="primary"
+                  value={1}
+                  name="winner Blue"
+                />
               </Typography>
 
               {this.state.teamOne.map((member, i) => {
@@ -161,7 +149,7 @@ export default class MatchInput extends Component {
                   id="radioGreen"
                   color="secondary"
                   value={2}
-                  name="winner"
+                  name="winner Green"
                 />
               </Typography>
 
