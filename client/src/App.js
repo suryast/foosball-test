@@ -1,8 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import {
+  Container,
+  Box,
+  Divider,
+  Grid,
+  Button,
+  Typography
+} from "@material-ui/core";
 
 import HeaderNav from "./components/Header";
-import moment from "moment";
 import MatchInput from "./components/MatchInput";
 import Leaderboard from "./components/Leaderboard";
 
@@ -11,9 +18,51 @@ class App extends React.Component {
     super(props);
     this.state = {
       results: [],
-      players: []
+      players: [],
+      response: "",
+      textResponse: "",
+      responseToPost: ""
     };
   }
+
+  // display server is working
+  componentDidMount() {
+    this.callApi()
+      .then(res => this.setState({ response: res.express }))
+      .catch(err => console.log(err));
+  }
+
+  // handle server call
+  callApi = async () => {
+    const response = await fetch("/api/hello");
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+
+    return body;
+  };
+
+  handleSubmit = async e => {
+    console.log(
+      "Sending this as body to server: " + JSON.stringify(this.state.players)
+    );
+    e.preventDefault();
+    const response = await fetch("/api/world", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(this.state.players)
+    });
+    const body = await response.text();
+    const parsedBody = JSON.parse(body);
+    console.log(parsedBody);
+
+    this.setState({
+      textResponse: "I received your POST request.This is what you sent me: "
+    });
+
+    this.setState({ responseToPost: body });
+  };
 
   // Store results to parent props
   updateResults(results) {
@@ -54,15 +103,39 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
-          <HeaderNav />
-          <Route exact path="/" component={this.matchInput.bind(this)} />
-          <Route path="/input" component={this.matchInput.bind(this)} />
-          <Route
-            path="/leaderboard"
-            component={this.viewLeaderboard.bind(this)}
-          />
-        </div>
+        <HeaderNav />
+        <Route exact path="/" component={this.matchInput.bind(this)} />
+        <Route path="/input" component={this.matchInput.bind(this)} />
+        <Route
+          path="/leaderboard"
+          component={this.viewLeaderboard.bind(this)}
+        />
+
+        <Divider variant="middle" />
+        <Container maxWidth="sm">
+          <Grid container spacing={1}>
+            <Grid item>
+              <Box my={4}>{this.state.response}</Box>
+              <Typography variant="h6" component="h6" gutterBottom>
+                Click below to interact with the server
+              </Typography>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={this.handleSubmit.bind(this)}
+              >
+                Post to Server and receive JSON response
+              </Button>
+              <Box color="red">
+                <Typography variant="subtitle1" color="red">
+                  {this.state.textResponse} <br />
+                  {this.state.responseToPost}
+                </Typography>
+              </Box>
+              <Divider variant="middle" />
+            </Grid>
+          </Grid>
+        </Container>
       </Router>
     );
   }
