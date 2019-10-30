@@ -10,11 +10,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - Two main objects in this version are players and results (which consist of matches).
 
+- To install the required modules. You need to execture `yarn install` twice – once inside `client` folder and once inside the top-level directory. After that run the app by executing `yarn dev` in the top-level directory.
+
 ### Existing bugs:
 
-[] Matches can be played by many players (more than 2) vs many players (more than 2). A foosball table can accommodate up to 4 players only.
-[] Doubling of player with the same name. Players with the same name should be combined into a single object – combined the winning.
-[] Unable to keep track of individual number of wins and number of matches played by each player
+- [ ] Matches can be played by many players (more than 2) vs many players (more than 2). A foosball table can accommodate up to 4 players only.
+- [ ] Doubling of player with the same name. Players with the same name should be combined into a single object – combined the winning.
+- [ ] Unable to keep track of individual number of wins and number of matches played by each player
 
 ## Available Scripts
 
@@ -28,7 +30,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser. T
 Node server: [http://localhost:5000](http://localhost:5000)
 
 The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
 ### `yarn client`
 
