@@ -2,21 +2,27 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Some notes for this repo
 
+- To install the required modules. You need to execute `yarn install` twice – once inside `client` folder and once inside the top-level directory. After that run the app by executing `yarn dev` in the top-level directory. No database is required.
+
 - This repo is second version on the Foosball project. The original design lives here [https://github.com/suryast/foosball-demo](https://github.com/suryast/foosball-demo).
 
 - The first iteration of this project. I was too focused on keeping track of the scores and creating object relationship. I realised that the score wasn't the main focus of the task.
 
-- This version is focused on recording winner and loser in a match and adding players in Blue or Green team.
+- This version is focused on recording winner and loser in a match and adding players in Blue or Green team (with some bugs check _Existing Bugs_ section below)
 
 - Two main objects in this version are players and results (which consist of matches).
 
-- To install the required modules. You need to execture `yarn install` twice – once inside `client` folder and once inside the top-level directory. After that run the app by executing `yarn dev` in the top-level directory.
+- I have included a way to interact with the server under the main React app.
+
+- I have realised that I know very little of TDD and unit testings in Javascript. I have learnt quite a great deal while writing some simple tests for this project. It's something I should revisit in more depth.
 
 ### Existing bugs:
 
 - [ ] Matches can be played by many players (more than 2) vs many players (more than 2). A foosball table can accommodate up to 4 players only.
 - [ ] Doubling of player with the same name. Players with the same name should be combined into a single object – combined the winning.
-- [ ] Unable to keep track of individual number of wins and number of matches played by each player
+- [ ] Unable to keep track of individual number of wins and number of matches played by each player.
+- [ ] First test inside `server.test.js` always fails for some reason. It might be to do with how the setup and teardown for the Jest is setup. Need to learn more about this.
+- [ ] Some error messages while running Jest – need to look into it a bit more.
 
 ## Available Scripts
 
